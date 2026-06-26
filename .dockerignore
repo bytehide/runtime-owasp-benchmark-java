@@ -1,0 +1,9 @@
+# Keep the Docker build context small: these are rebuilt inside the image or not needed.
+.git
+target
+results
+scorecard
+**/*.class
+**/*.log
+bytehide-runtime/internal
+.env

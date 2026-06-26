@@ -1,0 +1,24 @@
+{
+  "name": "owasp-benchmark-protected",
+  "enabled": true,
+  "preset": "cloud",
+  "debugResponses": true,
+  "throwOnConnectionFailure": false,
+  "logging": {
+    "level": "info",
+    "console": true,
+    "debug": false
+  },
+  "protections": {
+    "SqlInjection":      { "enabled": true, "action": "block" },
+    "CrossSiteScripting":{ "enabled": true, "action": "block" },
+    "PathTraversal":     { "enabled": true, "action": "block" },
+    "CommandInjection":  { "enabled": true, "action": "block" },
+    "LdapInjection":     { "enabled": true, "action": "block" },
+    "XPathInjection":    { "enabled": true, "action": "block" }
+  },
+  "cloud": {
+    "rateLimit":        { "enabled": false },
+    "anomalyDetection": { "enabled": false }
+  }
+}

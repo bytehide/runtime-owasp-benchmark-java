@@ -1,0 +1,23 @@
+.DS_Store
+.dccache
+.java-version
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+.scannerwork/
+
+src/WEB-INF/
+src/main/resources/benchmark.properties
+target/
+testfiles/
+tools/Contrast/contrast.jar
+tools/Contrast/contrast.yaml
+tools/Contrast/working/
+
+# ByteHide Runtime: local environment overrides (never commit real tokens).
+.env
+
+# OWASP sample scan outputs - not part of the deliverable.
+results/

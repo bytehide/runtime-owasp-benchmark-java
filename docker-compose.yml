@@ -1,0 +1,31 @@
+# OWASP Benchmark protected by ByteHide Runtime.
+# Run from the repository root:
+#
+#   docker compose up -d --build
+#
+# Then the app is available at https://localhost:9443/benchmark (self-signed certificate).
+services:
+  benchmark:
+    build:
+      context: .
+      dockerfile: bytehide-runtime/Dockerfile
+    image: owasp-benchmark-bytehide:local
+    container_name: owasp-benchmark-bytehide
+    ports:
+      - "${BENCH_HOST_PORT:-9443}:9443"
+    environment:
+      # ByteHide Runtime project token (required). docker compose will refuse to start without it.
+      - BYTEHIDE_MONITOR_TOKEN=${BYTEHIDE_MONITOR_TOKEN:?Set BYTEHIDE_MONITOR_TOKEN in your .env}
+      # Block only the offending request (0), not the whole attacker session (1). Recommended
+      # for the scorecard so one detected attack does not 403 later (benign) requests by cascade.
+      - BYTEHIDE_SESSION_BLOCK=${BYTEHIDE_SESSION_BLOCK:-0}
+      # Max JVM heap for the application.
+      - BENCH_MAX_HEAP=${BENCH_MAX_HEAP:-4g}
+    # The Benchmark is large; give the container enough memory.
+    mem_limit: ${BENCH_MEM_LIMIT:-6g}
+    # Maven cache: persist downloaded dependencies across rebuilds.
+    volumes:
+      - maven-cache:/root/.m2
+
+volumes:
+  maven-cache:

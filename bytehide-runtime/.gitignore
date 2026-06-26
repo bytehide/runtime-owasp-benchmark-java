@@ -1,0 +1,10 @@
+# Local environment overrides (never commit real tokens).
+.env
+
+# Internal measurement artifacts and local (non-Docker) runner — not part of the deliverable.
+internal/
+
+# Python cache y salida generada del scorecard (se crean al ejecutar el harness).
+__pycache__/
+*.pyc
+attack/scorecard.csv
